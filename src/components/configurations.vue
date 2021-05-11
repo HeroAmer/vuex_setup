@@ -10,7 +10,7 @@
           <md-table-head>Dropdown</md-table-head>
         </md-table-row>
 
-        <md-table-row v-for="(src, index) in source" :key="src.id" value="src">
+        <md-table-row v-for="(src, index) in configurations" :key="src.id" value="src">
           <md-table-cell md-numeric>{{index + 1}}</md-table-cell>
           <md-table-cell>{{src.key}}</md-table-cell>
           <md-table-cell>{{src.type}}</md-table-cell>
@@ -18,7 +18,7 @@
             <md-field>
             <label for="options">options</label>
             <md-select v-model="src.map" name="option" id="option">
-              <md-option :value="option.key" v-for="option in options" :key="option.id">{{option.key}}</md-option> 
+              <md-option :value="option.key" v-for="option in targetConfigurations" :key="option.id">{{option.key}}</md-option> 
             </md-select>
           </md-field>
           </md-table-cell>
@@ -35,14 +35,16 @@
           <md-table-head></md-table-head>
         </md-table-row>
 
-        <md-table-row v-for="(option, index) in options" :key="option.id" value="src" style="height:90px" >
+        <md-table-row v-for="(option, index) in targetConfigurations" :key="option.id" value="src" style="height:90px" >
           <md-table-cell md-numeric>{{index + 1}}</md-table-cell>
           <md-table-cell>{{option.key}}</md-table-cell>
           <md-table-cell>{{option.type}}</md-table-cell>
-          <md-table-cell class="ic-cell">
-            <a href="#" @click="deleteConfig(option)"><md-icon class="fa fa-close"></md-icon></a>
-            <md-icon class="fa fa-chevron-up"></md-icon>
-            <md-icon class="fa fa-chevron-down"></md-icon>
+          <md-table-cell>
+            <div class="cell-holder">
+              <a href="#" @click="deleteConfig(option)"><md-icon class="fa fa-close"></md-icon></a>
+              <md-icon class="fa fa-chevron-up"></md-icon>
+              <md-icon class="fa fa-chevron-down"></md-icon>
+            </div>
           </md-table-cell>
        
         </md-table-row>
@@ -53,53 +55,18 @@
 </template>
 
 <script>
-  export default {
-    name: 'configurations',
-    data: () => ({
-      source : [
-        {
-          id:1,
-          key:"id",
-          type:"string",
-          map:''
-        },
-        {
-          id:2,
-          key:"iD",
-          type:"string",
-          map:''
-        },
-        {
-          id:3,
-          key:"oPtiOnN",
-          type:"string",
-          map:''
-        },
-        {
-          id:4,
-          key:"OPTION",
-          type:"string",
-          map:''
-        },
-      ],
-      options: [
-        {
-          id:6,
-          key:"id",
-          type:"string"
-        },
-        {
-          id:7,
-          key:"age",
-          type:"number"
-        }
-      ],
+  import { mapGetters , mapActions } from 'vuex';
 
-    }),
+  export default {
+    computed: mapGetters(['configurations', 'targetConfigurations']),
+    name: 'configurations',
     methods: {
-      deleteConfig(config){
-        this.options = this.options.filter(option => option.id != config.id)
-      }
+      ...mapActions(['fetchConfigurations','fetchTargetConfiguration', 'deleteConfig'])
+    },
+    created(){
+      this.fetchConfigurations();
+      this.fetchTargetConfiguration();
+      
     }
   }
 </script>
@@ -111,7 +78,7 @@
     justify-content: space-between;
   }
 
-  .ic-cell{
-    display: flex im !important;
+  .cell-holder{
+    display: flex !important;
   }
 </style>

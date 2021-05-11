@@ -1,0 +1,63 @@
+  {
+      "configurations":[
+        {
+          "id":1,
+          "key":"id",
+          "type":"string",
+          "map":""
+        },
+        {
+          "id":2,
+          "key":"iD",
+          "type":"string",
+          "map":""
+        },
+        {
+          "id":3,
+          "key":"oPtiOnN",
+          "type":"string",
+          "map":""
+        },
+        {
+          "id":4,
+          "key":"OPTION",
+          "type":"string",
+          "map":""
+        }
+      ],
+      "targetConfigurations" : [
+        {
+          "id":6,
+          "key":"id",
+          "type":"string"
+        },
+        {
+          "id":7,
+          "key":"age",
+          "type":"number"
+        }
+      ],
+      "users" : [
+        {
+          "id":6,
+          "name":"Amer Hero",
+          "email":"amerfsk@gmail.com",
+          "gender":"male",
+          "jobTitle":"Frontend developer"
+        },
+        {
+          "id":32,
+          "name":"Amer Hrnjic",
+          "email":"amerhrnjic@gmail.com",
+          "gender":"male",
+          "jobTitle":"Backend developer"
+        },
+        {
+          "id":6,
+          "name":"Muhamed Sait Kaya",
+          "email":"mkaya@gmail.com",
+          "gender":"male",
+          "jobTitle":"Backend developer"
+        }
+      ]
+  }

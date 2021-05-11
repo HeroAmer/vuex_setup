@@ -9,76 +9,31 @@
         <md-table-head>Job Title</md-table-head>
       </md-table-row>
 
-      <md-table-row>
-        <md-table-cell md-numeric>1</md-table-cell>
-        <md-table-cell>Shawna Dubbin</md-table-cell>
-        <md-table-cell>sdubbin0@geocities.com</md-table-cell>
-        <md-table-cell>Male</md-table-cell>
-        <md-table-cell>Assistant Media Planner</md-table-cell>
+      <md-table-row v-for="(user, index) in users" :key="user.id" value="user">
+        <md-table-cell md-numeric>{{index + 1}}</md-table-cell>
+        <md-table-cell>{{user.name}}</md-table-cell>
+        <md-table-cell>{{user.email}}</md-table-cell>
+        <md-table-cell>{{user.gender}}</md-table-cell>
+        <md-table-cell>{{user.jobTitle}}</md-table-cell>
       </md-table-row>
 
-      <md-table-row>
-        <md-table-cell md-numeric>2</md-table-cell>
-        <md-table-cell>Odette Demageard</md-table-cell>
-        <md-table-cell>odemageard1@spotify.com</md-table-cell>
-        <md-table-cell>Female</md-table-cell>
-        <md-table-cell>Account Coordinator</md-table-cell>
-      </md-table-row>
-
-      <md-table-row>
-        <md-table-cell md-numeric>3</md-table-cell>
-        <md-table-cell>Vera Taleworth</md-table-cell>
-        <md-table-cell>vtaleworth2@google.ca</md-table-cell>
-        <md-table-cell>Male</md-table-cell>
-        <md-table-cell>Community Outreach Specialist</md-table-cell>
-      </md-table-row>
-
-      <md-table-row>
-        <md-table-cell md-numeric>4</md-table-cell>
-        <md-table-cell>Vera Taleworth</md-table-cell>
-        <md-table-cell>vtaleworth2@google.ca</md-table-cell>
-        <md-table-cell>Male</md-table-cell>
-        <md-table-cell>Community Outreach Specialist</md-table-cell>
-      </md-table-row>
-
-      <md-table-row>
-        <md-table-cell md-numeric>5</md-table-cell>
-        <md-table-cell>Vera Taleworth</md-table-cell>
-        <md-table-cell>vtaleworth2@google.ca</md-table-cell>
-        <md-table-cell>Male</md-table-cell>
-        <md-table-cell>Community Outreach Specialist</md-table-cell>
-      </md-table-row>
-
-      <md-table-row>
-        <md-table-cell md-numeric>6</md-table-cell>
-        <md-table-cell>Vera Taleworth</md-table-cell>
-        <md-table-cell>vtaleworth2@google.ca</md-table-cell>
-        <md-table-cell>Male</md-table-cell>
-        <md-table-cell>Community Outreach Specialist</md-table-cell>
-      </md-table-row>
-
-      <md-table-row>
-        <md-table-cell md-numeric>7</md-table-cell>
-        <md-table-cell>Vera Taleworth</md-table-cell>
-        <md-table-cell>vtaleworth2@google.ca</md-table-cell>
-        <md-table-cell>Male</md-table-cell>
-        <md-table-cell>Community Outreach Specialist</md-table-cell>
-      </md-table-row>
-
-      <md-table-row>
-        <md-table-cell md-numeric>8</md-table-cell>
-        <md-table-cell>Vera Taleworth</md-table-cell>
-        <md-table-cell>vtaleworth2@google.ca</md-table-cell>
-        <md-table-cell>Male</md-table-cell>
-        <md-table-cell>Community Outreach Specialist</md-table-cell>
-      </md-table-row>
+      
 
     </md-table>
   </div>
 </template>
 
 <script>
+  import { mapGetters , mapActions } from 'vuex';
+
   export default {
-    name: 'users'
+    name: 'users',
+    computed: mapGetters(['users']),
+    methods: {
+      ...mapActions(['fetchUsers'])
+    },
+    created(){
+      this.fetchUsers();
+    }
   }
 </script>
